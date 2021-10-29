@@ -7,12 +7,15 @@ path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
 pacman = vector(-40, -80)
+
+# Haciendo los fantasmas más rápidos, cambiando a 20
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(20, 0)], 
+    [vector(-180, -160), vector(0, 20)],
+    [vector(100, 160), vector(0, -20)],
+    [vector(100, -160), vector(-20, 0)],
 ]
+
 # Cambiando el tablero, los números 1 forman el nuevo camino
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -125,28 +128,28 @@ def move():
                 if(pacman.y > point.y):
                     # pacman arriba a la derecha
                     options = [
-                        vector(5, 0),
-                        vector(0, 5),
+                        vector(20, 0), # se cambió el 5 por 20 para que vaya más rápido
+                        vector(0, 20),
                     ]
                 else:
                     # pacman a la derecha abajo
                     options = [
-                        vector(5, 0),
-                        vector(0, -5),
+                        vector(20, 0), # se cambió el 5 por 20 para que vaya más rápido
+                        vector(0, -20),
                     ]
             else:
                 # esta a la izquierda 
                 if(pacman.y > point.y):
                     # esta arriba a la izquierda
                     options = [
-                        vector(-5, 0),
-                        vector(0, 5),
+                        vector(-20, 0), # se cambió el 5 por 20 para que vaya más rápido
+                        vector(0, 20),
                     ]
                 else:
                     # esta abajo a la izquierda
                     options = [
-                        vector(-5, 0),
-                        vector(0, -5),
+                        vector(-20, 0), # se cambió el 5 por 20 para que vaya más rápido
+                        vector(0, -20),
                     ]
             plan = choice(options)
             course.x = plan.x
@@ -162,7 +165,8 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 5) # Haciendo a los fantasmas más rápidos
+
 
 def change(x, y):
     "Change pacman aim if valid."
